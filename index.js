@@ -100,5 +100,7 @@ app.post('/api/analyze', upload.fields([{ name: 'tender', maxCount: 1 }, { name:
 });
 
 app.get('/api/checks', async (_q, res) => res.json(Check ? (await Check.find().sort({ createdAt: -1 }).limit(20)).map(c => c.data) : mem.slice(0, 20)));
+app.get('/', (_req, res) => res.send('Welcome to BidProof - Server is running'));
+
 app.get('/api/health', (_q, res) => res.json({ ok: true }));
 app.listen(process.env.PORT || 5000, () => console.log('BidProof API up'));
